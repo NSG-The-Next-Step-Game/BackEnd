@@ -2,6 +2,7 @@ package com.nsg.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,7 +39,7 @@ public class Usuario {
 	@NotBlank(message = "O campo foto deve ser preenchido")
 	private String foto;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Produto> produto;
 
