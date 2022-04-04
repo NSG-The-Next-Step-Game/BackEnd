@@ -1,75 +1,74 @@
 package com.nsg.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
+@Table(name = "tb_produto")
 public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "O campo nome deve ser preenchido")
 	@Size(min = 3, max = 255, message = "O nome deve ter no mínimo 3 e no máximo 255 caracteres")
 	private String nome;
-	
+
 	@NotBlank(message = "O campo descrição deve ser preenchido")
 	@Size(min = 10, max = 500, message = "A descrição deve ter no mínimo 10 e no máximo 500 caracteres")
 	private String descricao;
-	
-	@NotBlank(message = "O campo preço deve ser preenchido")
-	private Double preco;
-	
+
+	@NotNull(message = "O campo preço deve ser preenchido")
+	private BigDecimal preco;
+
 	@NotBlank(message = "O campo tipo deve ser preenchido como mídia física ou digital")
 	@Size(min = 6, max = 255, message = "O tipo deve ter no mínimo 6 e no máximo 255 caracteres")
 	private String tipo;
-	
+
 	@NotBlank(message = "O campo classificação indicativa deve ser preenchido")
 	@Size(min = 2, max = 255, message = "A classificação indicativa deve ter no mínimo 2 e no máximo 255 caracteres")
 	private String classInd;
-	
+
 	@NotBlank(message = "O campo console deve ser preenchido")
 	@Size(min = 2, max = 255, message = "O console deve ter no mínimo 2 e no máximo 255 caracteres")
 	private String console;
-	
+
 	@NotBlank(message = "O campo foto deve ser preenchido")
 	private String foto;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime dataProduto;
-	
-	/*@ManyToOne
-	@JsonIgnoreProperties("produto")
-	private Usuario usuario;*/
 
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private Categoria categoria;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Usuario Usuario;
+	
 
-	/*public Usuario getUsuario() {
-		return usuario;
+	public Usuario getUsuario() {
+		return Usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}*/
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+		Usuario = usuario;
 	}
 
 	public Long getId() {
@@ -96,11 +95,13 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Double getPreco() {
+
+	
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
-	public void setPreco(Double preco) {
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
 
@@ -143,4 +144,13 @@ public class Produto {
 	public void setDataProduto(LocalDateTime dataProduto) {
 		this.dataProduto = dataProduto;
 	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 }

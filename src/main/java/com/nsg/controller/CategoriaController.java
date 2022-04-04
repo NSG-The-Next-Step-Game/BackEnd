@@ -1,6 +1,5 @@
 package com.nsg.controller;
 
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -39,11 +38,11 @@ public class CategoriaController {
 		return categoriaRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.notFound().build());
 	}
-	
+
 	@GetMapping("/genero/{genero}")
-	public ResponseEntity <List<Categoria>> getByGenero(@PathVariable String genero) {
+	public ResponseEntity<List<Categoria>> getByGenero(@PathVariable String genero) {
 		return ResponseEntity.ok(categoriaRepository.findAllByGeneroContainingIgnoreCase(genero));
-				
+
 	}
 
 	@PostMapping
@@ -66,5 +65,3 @@ public class CategoriaController {
 		}).orElse(ResponseEntity.notFound().build());
 	}
 }
-
-
