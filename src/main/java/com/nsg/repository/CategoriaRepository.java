@@ -1,14 +1,12 @@
 package com.nsg.repository;
 
-	import java.util.List;
-	import org.springframework.data.jpa.repository.JpaRepository;
-	import org.springframework.stereotype.Repository;
-	import com.nsg.model.Categoria;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.nsg.model.Categoria;
 
-	@Repository
-	public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
+@Repository
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
-		public List<Categoria> findAllByGeneroContainingIgnoreCase(String genero);
-	}
-
-
+	public List<Categoria> findAllByGeneroContainingIgnoreCase(String genero);
+}
