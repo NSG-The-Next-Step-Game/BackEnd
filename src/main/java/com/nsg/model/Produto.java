@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -31,7 +32,7 @@ public class Produto {
 	@Size(min = 10, max = 500, message = "A descrição deve ter no mínimo 10 e no máximo 500 caracteres")
 	private String descricao;
 	
-	@NotBlank(message = "O campo preço deve ser preenchido")
+	@NotNull(message = "O campo preço deve ser preenchido")
 	private Double preco;
 	
 	@NotBlank(message = "O campo tipo deve ser preenchido como mídia física ou digital")
