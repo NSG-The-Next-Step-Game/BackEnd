@@ -2,10 +2,12 @@ package com.nsg.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -13,6 +15,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
+@Table(name = "tb_produto")
 public class Produto {
 
 	@Id
@@ -48,21 +52,21 @@ public class Produto {
 	@UpdateTimestamp
 	private LocalDateTime dataProduto;
 	
-	/*@ManyToOne
+	@ManyToOne
 	@JsonIgnoreProperties("produto")
-	private Usuario usuario;*/
+	private Usuario usuario;
 
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private Categoria categoria;
 
-	/*public Usuario getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}*/
+	}
 
 	public Categoria getCategoria() {
 		return categoria;
