@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nsg.model.Produto;
-import com.nsg.repository.CategoriaRepository;
 import com.nsg.repository.ProdutoRepository;
 
 @RestController
@@ -28,9 +27,6 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	
-	@Autowired
-	private CategoriaRepository categoriaRepository;
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Produto>> getAll() {
@@ -42,11 +38,11 @@ public class ProdutoController {
 		return produtoRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.notFound().build());
 	}
-	
+
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity <List<Produto>> getByNome(@PathVariable String nome) {
+	public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome) {
 		return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
-				
+
 	}
 
 	@PostMapping
