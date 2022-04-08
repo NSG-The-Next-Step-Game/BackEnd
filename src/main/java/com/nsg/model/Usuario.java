@@ -15,28 +15,27 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "O campo nome deve ser preenchido")
 	@Size(min = 3, max = 255, message = "O nome deve ter no mínimo 3 e no máximo 255 caracteres")
 	private String nome;
-	
+
 	@Email
 	@NotBlank(message = "O campo usuário deve ser preenchido")
 	@Size(min = 10, max = 255, message = "O usuário deve ter no mínimo 10 e no máximo 255 caracteres")
 	private String usuario;
-	
+
 	@NotBlank(message = "O campo senha deve ser preenchido")
 	@Size(min = 8, message = "A senha deve ter no mínimo 8 caracteres")
 	private String senha;
-	
+
 	@NotBlank(message = "O campo foto deve ser preenchido")
 	private String foto;
 	
@@ -44,6 +43,7 @@ public class Usuario {
 	@JsonIgnoreProperties("usuario")
 	private List<Produto> produto;
 
+	
 	public List<Produto> getProduto() {
 		return produto;
 	}
@@ -91,4 +91,5 @@ public class Usuario {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+
 }
