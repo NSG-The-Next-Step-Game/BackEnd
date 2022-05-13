@@ -56,7 +56,7 @@ public class ProdutoController {
 	@PostMapping
 	public ResponseEntity<Produto> postProduto(@Valid @RequestBody Produto produto) {
 		if (categoriaRepository.existsById(produto.getCategoria().getId()))
-			if (usuarioRepository.existsById(produto.getUsuario().getId()))
+			//if (usuarioRepository.existsById(produto.getUsuario().getId()))
 				return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
 
 		return ResponseEntity.notFound().build();
@@ -66,7 +66,7 @@ public class ProdutoController {
 	public ResponseEntity<Produto> putProduto(@Valid @RequestBody Produto produto) {
 		if(produtoRepository.existsById(produto.getId())) {
 			if(produtoRepository.existsById(produto.getCategoria().getId()))
-				if(produtoRepository.existsById(produto.getUsuario().getId()))
+				//if(produtoRepository.existsById(produto.getUsuario().getId()))
 				return ResponseEntity.status(HttpStatus.OK).body(produtoRepository.save(produto));
 			return ResponseEntity.notFound().build();
 		}
