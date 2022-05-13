@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nsg.model.Produto;
 import com.nsg.repository.CategoriaRepository;
 import com.nsg.repository.ProdutoRepository;
-import com.nsg.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/produtos")
@@ -33,8 +32,8 @@ public class ProdutoController {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
+	//@Autowired
+	//private UsuarioRepository usuarioRepository;
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Produto>> getAll() {
